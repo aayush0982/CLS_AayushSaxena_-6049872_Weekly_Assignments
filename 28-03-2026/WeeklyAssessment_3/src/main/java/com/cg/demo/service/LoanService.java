@@ -57,13 +57,13 @@ public class LoanService implements LoanServiceImpl {
 	}
 
 	@Override
-	public void updateLoanStatus(int id, String status) {
+	public Loan updateLoanStatus(int id, String status) {
 
 		Loan loan = loanRepo.findById(id).orElseThrow(() -> new LoanNotFoundException("Loan not found with id: " + id));
 
 		loan.setStatus(status);
-		loanRepo.save(loan);
-		System.out.println("Loan Updated Successfully");
+
+		return loanRepo.save(loan);
 	}
 
 }

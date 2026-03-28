@@ -1,5 +1,6 @@
 package com.cg.demo.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,13 +12,14 @@ public class Loan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String applicantName;
-	private double loanAmount;
+	@Column(nullable = true)
+	private Double loanAmount;
 	private String status;
 
 	public Loan() {
 	}
 
-	public Loan(Integer id, String applicantName, double loanAmount, String status) {
+	public Loan(Integer id, String applicantName, Double loanAmount, String status) {
 		this.applicantName = applicantName;
 		this.loanAmount = loanAmount;
 		this.status = status;
@@ -40,11 +42,11 @@ public class Loan {
 		this.applicantName = applicantName;
 	}
 
-	public double getLoanAmount() {
+	public Double getLoanAmount() {
 		return loanAmount;
 	}
 
-	public void setLoanAmount(double loanAmount) {
+	public void setLoanAmount(Double loanAmount) {
 		this.loanAmount = loanAmount;
 	}
 

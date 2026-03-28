@@ -11,6 +11,6 @@ public interface LoanServiceImpl {
 
 	public List<Loan> fetchById(int id);
 
-	public void updateLoanStatus(int id, String status);
+	public Loan updateLoanStatus(int id, String status);
 
 }

@@ -1,5 +1,4 @@
 package com.cg.demo.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +30,13 @@ public class LoanController {
 
 	@GetMapping("/loans/{id}")
 	public ResponseEntity<List<Loan>> getLoanById(@PathVariable int id) {
-	    return ResponseEntity.ok(loanService.fetchById(id));
+		return ResponseEntity.ok(loanService.fetchById(id));
 	}
 
 	@PutMapping("/loans/{id}/status")
-	public ResponseEntity<List<Loan>> updateLoanStatus(
-	        @PathVariable int id,
-	        @RequestParam String status) {
+	public ResponseEntity<Loan> updateLoanStatus(@PathVariable int id, @RequestBody Loan request) {
 
-	    loanService.updateLoanStatus(id, status);
-	    return ResponseEntity.ok(loanService.fetchById(id));
+		Loan updatedLoan = loanService.updateLoanStatus(id, request.getStatus());
+		return ResponseEntity.ok(updatedLoan);
 	}
 }
