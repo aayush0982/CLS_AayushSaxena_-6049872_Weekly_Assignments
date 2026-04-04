@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Edit Employee</title>
+	<style>
+		.msg {
+			color: green;
+			font-weight: bold;
+		}
+
+		.error {
+			color: red;
+			font-size: 0.9em;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h2>Edit Employee</h2>
+
+	<p th:text="${msg}" th:if="${msg}" class="msg"></p>
+
+	<form th:action="@{/update}" th:object="${emp}" method="post">
+
+		ID:
+		<input type="text" th:field="*{empId}" readonly /><br><br>
+
+		Name:
+		<input type="text" th:field="*{empName}" />
+		<p th:if="${#fields.hasErrors('empName')}" th:errors="*{empName}" class="error"></p>
+
+		Salary:
+		<input type="number" th:field="*{empSal}" />
+		<p th:if="${#fields.hasErrors('empSal')}" th:errors="*{empSal}" class="error"></p>
+
+		DOJ:
+		<input type="date" th:field="*{empDoj}" />
+		<p th:if="${#fields.hasErrors('empDoj')}" th:errors="*{empDoj}" class="error"></p>
+
+		Dept (hr / production):
+		<input type="text" th:field="*{deptName}" />
+		<p th:if="${#fields.hasErrors('deptName')}" th:errors="*{deptName}" class="error"></p>
+
+		<button type="submit">Save</button>
+	</form>
+
+	<br>
+	<a th:href="@{/viewall}">Back to Employee List</a>
+
+</body>
+
+</html>
